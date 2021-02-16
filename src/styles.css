@@ -1,1 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* Võetud google fontsidest, select-this-style, @import, style tagi seest */
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+/* Aplikeerub kõigele */
+* {
+  font-family: 'Oxygen', sans-serif;
+  outline: none;
+}
+
+/* Margin 8px oli Angularis automaatselt enne lisatud, kirjutasime üle */
+body {
+  margin: 0;
+}
