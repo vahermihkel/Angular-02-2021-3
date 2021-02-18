@@ -1,0 +1,16 @@
+<p>home works!</p>
+
+<!-- {{ muutuja }}
+<br>
+{{ muudetudMuutuja + muutuja }} -->
+
+<!-- {{ items }} -->
+
+
+<div *ngFor="let item of items">
+  <div>{{ item.price }}</div>
+  <div>{{ item.title }}</div>
+  <div>{{ item.category }}</div>
+  <img src="{{ item.imgSrc }}">
+  <div (click)="onAddToCart(item)">Lisa ostukorvi</div>
+</div>

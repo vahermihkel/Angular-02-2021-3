@@ -8,6 +8,7 @@
 
 .navbar img {
   height: 95px;
+  cursor: pointer;
 }
 
 .navbar .cart-button {
@@ -28,7 +29,7 @@
   color: white;
 }
 
-.cart-button span:hover {
+.cart-button:hover span {
   color: #7ba9c3;
   cursor: pointer;
 }

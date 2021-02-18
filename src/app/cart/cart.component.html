@@ -1,1 +1,7 @@
-<p>OSTUKORVI VAADE</p>
+<div *ngFor="let item of itemsInCart">
+  <div>{{ item.price }}</div>
+  <div>{{ item.title }}</div>
+  <div>{{ item.category }}</div>
+  <img src="{{ item.imgSrc }}">
+  <!-- <div (click)="onAddToCart(item)">Lisa ostukorvi</div> -->
+</div>
