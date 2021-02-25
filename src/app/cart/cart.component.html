@@ -1,7 +1,21 @@
-<div *ngFor="let item of itemsInCart">
-  <div>{{ item.price }}</div>
-  <div>{{ item.title }}</div>
-  <div>{{ item.category }}</div>
-  <img src="{{ item.imgSrc }}">
-  <!-- <div (click)="onAddToCart(item)">Lisa ostukorvi</div> -->
+<div *ngIf="itemsInCart.length > 0">
+
+  <div (click)="onEmptyCart()">Tühjenda ostukorv</div>
+  <div *ngFor="let item of itemsInCart; let i = index">
+    {{ i }}
+    <div>{{ item.price }} €</div>
+    <div>{{ item.title }}</div>
+    <div>{{ item.category }}</div>
+    <img src="{{ item.imgSrc }}">
+    <!-- event binding -->
+    <div (click)="onDeleteFromCart(i)">X</div>
+  </div>
+  <!-- string interpolation -->
+  <div>Ostukorvi kogusumma: {{ sumOfCart.toFixed(2) }} €</div>
+
+</div>
+
+<div class="cart-empty" *ngIf="itemsInCart.length === 0">
+  <img src="assets/empty-cart.svg">
+  <div>Ostukorv on tühi</div>
 </div>

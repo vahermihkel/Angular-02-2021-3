@@ -1,0 +1,36 @@
+/* punktiga on klass, # on id, " " on tääg (tag) */
+.navbar {
+  background-color: #ececec;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar img {
+  height: 95px;
+  cursor: pointer;
+}
+
+.navbar .cart-button {
+  background-color: #007cc3;
+  height: 70px;
+  width: 100px;
+}
+
+.cart-button img {
+  height: 30px;
+  padding: 20px 10px;
+}
+
+.cart-button span {
+  position: relative;
+  top: -30px;
+  height: 30px;
+  color: white;
+}
+
+.cart-button:hover span {
+  color: #7ba9c3;
+  cursor: pointer;
+}
+
