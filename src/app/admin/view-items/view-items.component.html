@@ -1,7 +1,11 @@
+<div routerLink="/admin">TAGASI</div>
+
+<br>
+
 <div *ngFor="let item of items">
   <div>{{ item.price }}</div>
   <div>{{ item.title }}</div>
   <div>{{ item.category }}</div>
-  <img src="{{ item.imgSrc }}">
-  <div (click)="onAddToCart(item)">Lisa ostukorvi</div>
+  <div routerLink="/admin/edit-item">Muuda eset</div>
+  <br>
 </div>

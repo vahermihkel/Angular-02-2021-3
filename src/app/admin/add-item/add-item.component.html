@@ -1,0 +1,13 @@
+<div routerLink="/admin">TAGASI</div>
+
+<form (ngSubmit)="onSubmit(addItemForm)" #addItemForm="ngForm">
+  <label>Nimetus</label><br>
+  <input type="text" placeholder="Toote nimetus" ngModel name="title"><br>
+  <label>Pilt</label><br>
+  <input type="text" placeholder="Toote pilt" ngModel name="imgSrc"><br>
+  <label>Hind</label><br>
+  <input type="number" placeholder="Toote hind" ngModel name="price"><br>
+  <label>Kategooria</label><br>
+  <input type="text" placeholder="Toote kategooria" ngModel name="category"><br>
+  <button>SISESTA</button>
+</form>

@@ -21,11 +21,13 @@ export class CartComponent implements OnInit {
 
   onDeleteFromCart(index: number) {
     this.cartService.itemsInCart.splice(index,1);
+    this.cartService.cartChanged.next(this.cartService.itemsInCart);
     this.calculateSumOfCart();
   }
 
   onEmptyCart() {
     this.cartService.itemsInCart.splice(0);
+    this.cartService.cartChanged.next(this.cartService.itemsInCart);
     this.calculateSumOfCart();
   }
 

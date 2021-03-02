@@ -2,7 +2,6 @@
 
   <div (click)="onEmptyCart()">Tühjenda ostukorv</div>
   <div *ngFor="let item of itemsInCart; let i = index">
-    {{ i }}
     <div>{{ item.price }} €</div>
     <div>{{ item.title }}</div>
     <div>{{ item.category }}</div>
