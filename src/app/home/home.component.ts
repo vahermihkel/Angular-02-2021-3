@@ -11,7 +11,8 @@ import { ItemService } from '../services/item.service';
 export class HomeComponent implements OnInit {
   items: Item[] = [];
 
-  constructor(private cartService: CartService,
+  constructor(
+    private cartService: CartService,
     private itemService: ItemService) { }
 
   ngOnInit(): void {

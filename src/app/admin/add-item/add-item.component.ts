@@ -15,8 +15,11 @@ export class AddItemComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
-    this.itemService.items.push(form.value);
+    console.log(form);
+    if (form.valid) {
+      console.log(form);
+      this.itemService.items.push(form.value);
+    }
   }
 
 }
