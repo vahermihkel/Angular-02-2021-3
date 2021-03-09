@@ -16,4 +16,8 @@ export class ViewItemsComponent implements OnInit {
     this.items = this.itemService.items;
   }
 
+  onDeleteItem(i: number) {
+    this.itemService.items.splice(i,1);
+  }
+
 }

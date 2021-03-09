@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Item } from 'src/app/models/item.model';
 import { ItemService } from 'src/app/services/item.service';
 
 @Component({
@@ -9,16 +11,22 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class AddItemComponent implements OnInit {
 
-  constructor(private itemService: ItemService) { }
+  constructor(private itemService: ItemService,
+    private router: Router) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form);
     if (form.valid) {
-      console.log(form);
-      this.itemService.items.push(form.value);
+      let formValue = form.value;
+      let item = new Item(
+        formValue.title,
+        formValue.price, 
+        formValue.category, 
+        formValue.imgSrc);
+      this.itemService.items.push(item);
+      this.router.navigateByUrl("/admin/view-items")
     }
   }
 

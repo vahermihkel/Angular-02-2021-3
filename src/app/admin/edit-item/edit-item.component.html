@@ -1,1 +1,13 @@
-<p>edit-item works!</p>
+<div routerLink="/admin">TAGASI</div>
+
+<form (ngSubmit)="onSubmit(editItemForm)" [formGroup]="editItemForm">
+  <label>Nimetus</label><br>
+  <input type="text" placeholder="Toote nimetus" formControlName="title" required><br>
+  <label>Pilt</label><br>
+  <input type="text" placeholder="Toote pilt" formControlName="imgSrc" required><br>
+  <label>Hind</label><br>
+  <input type="number" placeholder="Toote hind" formControlName="price" required><br>
+  <label>Kategooria</label><br>
+  <input type="text" placeholder="Toote kategooria" formControlName="category" required><br>
+  <button [disabled]="editItemForm.invalid" type="submit">SISESTA</button>
+</form>
