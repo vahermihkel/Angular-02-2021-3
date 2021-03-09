@@ -25,7 +25,7 @@ export class AddItemComponent implements OnInit {
         formValue.price, 
         formValue.category, 
         formValue.imgSrc);
-      this.itemService.items.push(item);
+      this.itemService.addItemToDatabase(item);
       this.router.navigateByUrl("/admin/view-items")
     }
   }

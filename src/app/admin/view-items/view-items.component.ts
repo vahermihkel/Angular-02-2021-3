@@ -13,11 +13,20 @@ export class ViewItemsComponent implements OnInit {
   constructor(private itemService: ItemService) { }
 
   ngOnInit(): void {
-    this.items = this.itemService.items;
+    // this.items = this.itemService.items;
+    this.itemService.getItemsFromDatabase().subscribe(itemsFromDatabase => {
+      console.log("võtan andmebaasist");
+      for (const key in itemsFromDatabase) {
+          const element = itemsFromDatabase[key];
+          this.items.push(element);
+      }
+    })
+    console.log("JEI");
   }
 
   onDeleteItem(i: number) {
-    this.itemService.items.splice(i,1);
+    this.items.splice(i,1);
+    this.itemService.saveItemsToDatabase(this.items);
   }
 
 }

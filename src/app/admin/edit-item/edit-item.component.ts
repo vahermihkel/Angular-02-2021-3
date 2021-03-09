@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/models/item.model';
 import { ItemService } from 'src/app/services/item.service';
@@ -20,7 +20,10 @@ export class EditItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.id = (Number)(this.route.snapshot.paramMap.get('itemId'));
-    this.item = this.itemService.items[this.id];
+    // console.log(this.route);
+    // console.log(this.route.snapshot);
+    // console.log(this.route.snapshot.paramMap);
+    // this.item = this.itemService.items[this.id];
     this.editItemForm = new FormGroup({
       title: new FormControl(this.item.title),
       price: new FormControl(this.item.price),
@@ -37,8 +40,8 @@ export class EditItemComponent implements OnInit {
         formValue.price, 
         formValue.category, 
         formValue.imgSrc);
-      this.itemService.items[this.id] = item;
-      this.router.navigateByUrl("/admin/view-items")
+      this.itemService.items[this.id] = item; // JavaScript Arrays 
+      this.router.navigateByUrl("/admin/view-items");
     } 
   }
 
