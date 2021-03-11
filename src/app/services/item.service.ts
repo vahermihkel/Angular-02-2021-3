@@ -15,8 +15,8 @@ export class ItemService {
   constructor(private http: HttpClient) { }
 
   // put asendab ära
-  saveItemsToDatabase(items: Item[]) {
-    this.http.put(this.url + "items.json", items).subscribe();
+  saveItemsToDatabase() {
+    this.http.put(this.url + "items.json", this.items).subscribe();
   }
 
   // post lisab juurde
@@ -29,3 +29,7 @@ export class ItemService {
     return this.http.get<Item[]>(this.url + "items.json");
   }
 }
+
+// item!: Item;      addItem(item: Item) {}       getItem(): Item {return ...}
+// new Item("","",0,"")
+// this.http.get<Item>()    smthChanged = new Subject<Item>() 

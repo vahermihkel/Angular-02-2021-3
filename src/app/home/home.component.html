@@ -1,4 +1,16 @@
-<div *ngFor="let item of items">
+<br>
+<button routerLink="admin">ADMIN</button>
+ <br><br>
+
+ <div class="filter-bar">
+   <div>Järjesta:</div>
+   <div (click)="onSortTitle()">Tähestiku järgi</div>
+   <div (click)="onSortPrice()">Hinna järgi</div>
+ </div>
+
+ <br><br>
+
+<div *ngFor="let item of itemsShown">
   <div>{{ item.price }}</div>
   <div>{{ item.title }}</div>
   <div>{{ item.category }}</div>

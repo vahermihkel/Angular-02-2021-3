@@ -23,7 +23,7 @@ export class EditItemComponent implements OnInit {
     // console.log(this.route);
     // console.log(this.route.snapshot);
     // console.log(this.route.snapshot.paramMap);
-    // this.item = this.itemService.items[this.id];
+    this.item = this.itemService.items[this.id];
     this.editItemForm = new FormGroup({
       title: new FormControl(this.item.title),
       price: new FormControl(this.item.price),
@@ -40,7 +40,8 @@ export class EditItemComponent implements OnInit {
         formValue.price, 
         formValue.category, 
         formValue.imgSrc);
-      this.itemService.items[this.id] = item; // JavaScript Arrays 
+      this.itemService.items[this.id] = item;
+      this.itemService.saveItemsToDatabase();
       this.router.navigateByUrl("/admin/view-items");
     } 
   }
