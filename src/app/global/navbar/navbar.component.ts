@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { CartService } from 'src/app/cart/cart.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { CartService } from 'src/app/cart/cart.service';
 export class NavbarComponent implements OnInit {
   cartSum = 0;
 
-  constructor(private cartService: CartService) { }
+  constructor(private cartService: CartService,
+    private translate: TranslateService) { }
 
   ngOnInit(): void {
     this.cartService.cartChanged.subscribe(items => {
@@ -19,6 +21,15 @@ export class NavbarComponent implements OnInit {
       this.cartSum += item.price;
     });
     })
+    const lang = localStorage.getItem("language");
+    if (lang) {
+      this.useLanguage(lang);
+    }
+  }
+
+  useLanguage(language: string): void {
+    this.translate.use(language);
+    localStorage.setItem("language",language);
   }
 
 }

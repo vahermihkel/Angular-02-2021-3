@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Item } from '../models/item.model';
 
 @Injectable({
@@ -15,17 +16,17 @@ export class ItemService {
   constructor(private http: HttpClient) { }
 
   // put asendab ära
-  saveItemsToDatabase() {
+  saveItemsToDatabase(): void {
     this.http.put(this.url + "items.json", this.items).subscribe();
   }
 
   // post lisab juurde
-  addItemToDatabase(item: Item) {
+  addItemToDatabase(item: Item): void {
     this.http.post(this.url + "items.json", item).subscribe();
   }
 
   // get saab kõik
-  getItemsFromDatabase() {
+  getItemsFromDatabase(): Observable<Item[]> {
     return this.http.get<Item[]>(this.url + "items.json");
   }
 }

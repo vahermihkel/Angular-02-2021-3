@@ -3,8 +3,8 @@
  <br><br>
 
  <div class="filter-bar">
-   <div>Järjesta:</div>
-   <div (click)="onSortTitle()">Tähestiku järgi</div>
+   <div>{{'järjesta:' | titlecase | translate  }}</div>
+   <div (click)="onSortTitle()">{{'Tähestiku järgi' | translate}}</div>
    <div (click)="onSortPrice()">Hinna järgi</div>
  </div>
 

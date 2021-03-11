@@ -1,5 +1,9 @@
 <div class="navbar">
   <img routerLink="/" src="assets\webshio.png">
+  <button (click)="useLanguage('en')">en</button>
+  <button (click)="useLanguage('ee')">ee</button>
+  <button (click)="useLanguage('de')">de</button>
+
   <div class="cart-button" routerLink="cart">
     <img src="assets\shopping-cart.svg">
     <span>{{ cartSum.toFixed(2) }} €</span>

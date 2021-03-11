@@ -51,12 +51,14 @@ export class HomeComponent implements OnInit {
 
   onSortPrice() {
     if (this.sortPriceNumber == 0) {
+      // 12,13,414,1231,12312,1,213,1
       this.itemsShown.sort((a, b) => a.price - b.price);
       this.sortPriceNumber = 1;
     } else if (this.sortPriceNumber == 1) {
       this.itemsShown.sort((a, b) => b.price - a.price);
       this.sortPriceNumber = 2;
     } else {
+      // muteerumise vältimiseks, teeme koopia
       this.itemsShown = this.itemsOriginal.slice();
       this.sortPriceNumber = 0;
     }
