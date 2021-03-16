@@ -7,19 +7,19 @@ export class ShortenTitlePipe implements PipeTransform {
 
   transform(value: string, separatorCount?: number): string {
     let words = value.split(" "); // javascript arrays
-    console.log(words);
+    // console.log(words);
     let longWords = [];
     if (!separatorCount) {
       separatorCount = 3;
     }
     for(let i = 0; i<separatorCount; i++){  // i = i + 1    --- i += 1   ---   i++
-        console.log(i);
-        console.log(words[i])
+        // console.log(i);
+        // console.log(words[i])
         longWords.push(words[i]);
-        console.log(longWords);
+        // console.log(longWords);
     }
     let newString = longWords.join(" ");
-    console.log(newString);
+    // console.log(newString);
     return newString;
   }
 

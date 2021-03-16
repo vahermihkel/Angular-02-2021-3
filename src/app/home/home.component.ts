@@ -67,6 +67,16 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  onRemoveFromCart(item: Item) {
+    let index = this.cartService.itemsInCart.findIndex(itemInCart => 
+      item.title == itemInCart.title
+    )
+    if (index != -1) {
+      this.cartService.itemsInCart.splice(index,1);
+      this.cartService.cartChanged.next(this.cartService.itemsInCart);
+    }
+  }
+
   onAddToCart(item: Item) {
     this.cartService.itemsInCart.push(item);
     this.cartService.cartChanged.next(this.cartService.itemsInCart);

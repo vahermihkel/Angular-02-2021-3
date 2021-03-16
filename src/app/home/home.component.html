@@ -8,7 +8,11 @@
   <div class="item" *ngFor="let item of itemsShown">
     <img src="{{ item.imgSrc }}">
     <div class="add-to-cart-button-wrapper">
-      <div (click)="onAddToCart(item)" class="add-to-cart-button">Lisa ostukorvi</div>
+      <div class="add-to-cart-button">
+        <span (click)="onRemoveFromCart(item)">-</span>
+        <span>______</span>
+        <span (click)="onAddToCart(item)">+</span>
+      </div>
     </div>
     <div class="item-title">{{ item.title | translate | shortenTitle:2 }}</div>
     <div class="item-price">{{ item.price | thousandSeparator }} €</div>
