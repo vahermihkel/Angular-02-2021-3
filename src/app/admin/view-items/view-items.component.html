@@ -1,12 +1,10 @@
-<div routerLink="/admin">TAGASI</div>
+<button class="main-button back" routerLink="/admin">{{'Tagasi' | translate}}</button>
 
-<br>
-
-<div *ngFor="let item of items; let i = index">
-  <div>{{ item.price }}</div>
-  <div>{{ item.title }}</div>
-  <div>{{ item.category }}</div>
-  <button (click)="onDeleteItem(i)">Kustuta ese</button>
-  <div [routerLink]="['/admin/edit-item',i]">Muuda eset</div>
-  <br>
+<div class="items-wrapper">
+  <div class="item" *ngFor="let item of items; let i = index">
+    <div class="item-title">{{ item.title }}</div>
+    <div class="item-price">{{ item.price }} €</div>
+    <button class="main-button change" [routerLink]="['/item/edit', i]">Muuda toodet</button>
+    <button class="main-button delete" (click)="onDeleteItem(i)">Kustuta toode</button>
+  </div>
 </div>

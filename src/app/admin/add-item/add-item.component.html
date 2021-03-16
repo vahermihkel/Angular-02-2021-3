@@ -1,4 +1,4 @@
-<div routerLink="/admin">TAGASI</div>
+<button class="main-button back" routerLink="/admin">{{'Tagasi' | translate}}</button>
 
 <form (ngSubmit)="onSubmit(addItemForm)" #addItemForm="ngForm">
   <label>Nimetus</label><br>
@@ -9,5 +9,5 @@
   <input type="number" placeholder="Toote hind" ngModel name="price" required><br>
   <label>Kategooria</label><br>
   <input type="text" placeholder="Toote kategooria" ngModel name="category" required><br>
-  <button [disabled]="addItemForm.invalid" type="submit">SISESTA</button>
+  <button class="main-button add" [disabled]="addItemForm.invalid" type="submit">SISESTA</button>
 </form>
