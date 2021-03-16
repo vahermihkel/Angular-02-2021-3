@@ -42,7 +42,7 @@ export class EditItemComponent implements OnInit {
         formValue.imgSrc);
       this.itemService.items[this.id] = item;
       this.itemService.saveItemsToDatabase();
-      this.router.navigateByUrl("/admin/view-items");
+      setTimeout(()=>{this.router.navigateByUrl("/admin/view-items")},200)
     } 
   }
 

@@ -1,5 +1,5 @@
 <div class="filter-bar">
-   <div class="filter-name">{{'järjesta:' | titlecase | translate  }}</div>
+   <div class="filter-name">{{'Järjesta:' | translate  }}</div>
    <div class="filter-value title" (click)="onSortTitle()">{{'Tähestiku järgi' | translate}}</div>
    <div class="filter-value price" (click)="onSortPrice()">Hinna järgi</div>
  </div>
@@ -10,7 +10,7 @@
     <div class="add-to-cart-button-wrapper">
       <div (click)="onAddToCart(item)" class="add-to-cart-button">Lisa ostukorvi</div>
     </div>
-    <div class="item-title">{{ item.title }}</div>
-    <div class="item-price">{{ item.price }} €</div>
+    <div class="item-title">{{ item.title | translate | shortenTitle:2 }}</div>
+    <div class="item-price">{{ item.price | thousandSeparator }} €</div>
   </div>
 </div>
