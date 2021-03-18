@@ -18,7 +18,7 @@ export class NavbarComponent implements OnInit {
       this.cartSum = 0;
       items.forEach(item => {
       // this.sumOfCart = this.sumOfCart + item.price;
-      this.cartSum += item.price;
+      this.cartSum += item.item.price*item.count;
     });
     })
     const lang = localStorage.getItem("language");

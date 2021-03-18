@@ -35,6 +35,10 @@ export class HomeComponent implements OnInit {
     })
   }
 
+  onCategorySelect(category: String) {
+    this.itemsShown = this.itemsOriginal.filter((item)=>item.category==category)
+  }
+
   // splice() - kustutab massiivist
   // slice() - teeb massiivist koopia - ei anna mäluaadressi
   // split() - teeb stringist massiivi "tere".split() -- ["t","e","r","e"]
@@ -69,16 +73,27 @@ export class HomeComponent implements OnInit {
 
   onRemoveFromCart(item: Item) {
     let index = this.cartService.itemsInCart.findIndex(itemInCart => 
-      item.title == itemInCart.title
+      item.title == itemInCart.item.title
     )
     if (index != -1) {
-      this.cartService.itemsInCart.splice(index,1);
+      if (this.cartService.itemsInCart[index].count == 1) {
+        this.cartService.itemsInCart.splice(index,1);
+      } else {
+        this.cartService.itemsInCart[index].count -= 1;
+      }
       this.cartService.cartChanged.next(this.cartService.itemsInCart);
     }
   }
 
   onAddToCart(item: Item) {
-    this.cartService.itemsInCart.push(item);
+    let index = this.cartService.itemsInCart.findIndex(itemInCart => 
+      item.title == itemInCart.item.title
+    )
+    if (index == -1) {
+      this.cartService.itemsInCart.push({item: item, count: 1});
+    } else {
+      this.cartService.itemsInCart[index].count += 1;
+    }
     this.cartService.cartChanged.next(this.cartService.itemsInCart);
   }
 

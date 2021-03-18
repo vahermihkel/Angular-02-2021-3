@@ -1,3 +1,9 @@
+<div class="sidebar">
+  <div (click)="onCategorySelect(category)" *ngFor="let category of itemsOriginal | uniqueCategory">
+    {{ category }}
+  </div>
+</div>
+
 <div class="filter-bar">
    <div class="filter-name">{{'Järjesta:' | translate  }}</div>
    <div class="filter-value title" (click)="onSortTitle()">{{'Tähestiku järgi' | translate}}</div>
@@ -5,8 +11,9 @@
  </div>
 
 <div class="items-wrapper">
-  <div class="item" *ngFor="let item of itemsShown">
-    <img src="{{ item.imgSrc }}">
+  <div class="item" *ngFor="let item of itemsShown; let i = index">
+    <img routerLink="view/{{i}}" src="{{ item.imgSrc }}">
+<!-- <img [routerLink]="['view',i]" [src]="item.imgSrc"> -->
     <div class="add-to-cart-button-wrapper">
       <div class="add-to-cart-button">
         <span (click)="onRemoveFromCart(item)">-</span>

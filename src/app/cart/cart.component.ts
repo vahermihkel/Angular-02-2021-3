@@ -8,7 +8,7 @@ import { CartService } from './cart.service';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  itemsInCart: Item[] = []
+  itemsInCart: {item: Item, count: number}[] = []
   sumOfCart: number = 0;
 
   // Dependency injection
@@ -17,6 +17,7 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {
     this.itemsInCart = this.cartService.itemsInCart;
     this.calculateSumOfCart();
+    console.log(this.itemsInCart);  
   }
 
   onDeleteFromCart(index: number) {
@@ -35,7 +36,7 @@ export class CartComponent implements OnInit {
     this.sumOfCart = 0;
     this.itemsInCart.forEach(item => {
       // this.sumOfCart = this.sumOfCart + item.price;
-      this.sumOfCart += item.price;
+      this.sumOfCart += item.item.price*item.count;
     });
   }
 }
