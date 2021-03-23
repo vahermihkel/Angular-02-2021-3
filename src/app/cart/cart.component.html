@@ -3,9 +3,14 @@
   <div class="empty-cart-button" (click)="onEmptyCart()">Tühjenda ostukorv</div>
   <div class="items-wrapper">
     <div class="item" *ngFor="let item of itemsInCart; let i = index">
-      <img src="{{ item.item.imgSrc }}">
+      <img src="{{ item.item.imgSrc }}">  
+      <div class="add-to-cart-button">
+        <span (click)="onRemoveFromCart(item.item)">-</span>
+        <span>{{ item.count }} tk</span>
+        <span (click)="onAddToCart(item.item)">+</span>
+      </div>
+      <div><b>{{ item.item.price * item.count | thousandSeparator}}</b></div>
       <div class="item-title">{{ item.item.title }}</div>
-      <div>Kokku: {{ item.count }}</div>
       <div class="item-price">{{ item.item.price | thousandSeparator }} €</div>
       <img class="delete-from-cart-button" (click)="onDeleteFromCart(i)" src="assets/bin.svg" alt="">
     </div>

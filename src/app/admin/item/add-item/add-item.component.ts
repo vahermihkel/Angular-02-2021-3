@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Item } from 'src/app/models/item.model';
 import { ItemService } from 'src/app/services/item.service';
+import { CategoryService } from '../../category/category.service';
 
 @Component({
   selector: 'app-add-item',
@@ -10,11 +11,14 @@ import { ItemService } from 'src/app/services/item.service';
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
+  categories!: string[];
 
   constructor(private itemService: ItemService,
-    private router: Router) { }
+    private router: Router,
+    private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.categories = this.categoryService.categories;
   }
 
   onSubmit(form: NgForm) {

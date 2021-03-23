@@ -18,7 +18,11 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     let id = Number(this.route.snapshot.paramMap.get("itemId"));
+    console.log(this.route.snapshot.paramMap);
+    console.log(id);
     this.item = this.itemService.items[id];
+    console.log(this.item); 
+
   }
 
   onRemoveFromCart() {
@@ -35,16 +39,18 @@ export class ViewComponent implements OnInit {
     }
   }
 
+  // [{item: {title:string,price:number...}, count: 7},{item: this.item, count: 1}]
+
   onAddToCart() {
     let index = this.cartService.itemsInCart.findIndex(itemInCart => 
       this.item.title == itemInCart.item.title
     )
     if (index == -1) {
       this.cartService.itemsInCart.push({item: this.item, count: 1});
-      this.cartService.cartChanged.next(this.cartService.itemsInCart);
     } else {
       this.cartService.itemsInCart[index].count += 1;
     }
+    this.cartService.cartChanged.next(this.cartService.itemsInCart);
   }
 }
 

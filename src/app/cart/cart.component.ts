@@ -32,6 +32,34 @@ export class CartComponent implements OnInit {
     this.calculateSumOfCart();
   }
 
+  onRemoveFromCart(item: Item) {
+    let index = this.cartService.itemsInCart.findIndex(itemInCart => 
+      item.title == itemInCart.item.title
+    )
+    if (index != -1) {
+      if (this.cartService.itemsInCart[index].count == 1) {
+        this.cartService.itemsInCart.splice(index,1);
+      } else {
+        this.cartService.itemsInCart[index].count -= 1;
+      }
+      this.cartService.cartChanged.next(this.cartService.itemsInCart);
+      this.calculateSumOfCart();
+    }
+  }
+
+  onAddToCart(item: Item) {
+    let index = this.cartService.itemsInCart.findIndex(itemInCart => 
+      item.title == itemInCart.item.title
+    )
+    if (index == -1) {
+      this.cartService.itemsInCart.push({item: item, count: 1});
+    } else {
+      this.cartService.itemsInCart[index].count += 1;
+    }
+    this.cartService.cartChanged.next(this.cartService.itemsInCart);
+    this.calculateSumOfCart();
+  }
+
   calculateSumOfCart() {
     this.sumOfCart = 0;
     this.itemsInCart.forEach(item => {

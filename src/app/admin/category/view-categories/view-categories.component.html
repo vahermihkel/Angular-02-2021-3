@@ -1,0 +1,12 @@
+<button class="main-button back" routerLink="/admin">{{'Tagasi' | translate}}</button>
+
+<button class="main-button" routerLink="/admin/add-category">{{'Lisa uus kategooria' | translate}}</button>
+
+
+<div class="categories-list">
+  <div *ngFor="let category of categories; let i = index">
+    <div>{{ category }}</div>
+    <button (click)="onRemoveCategory(i)">Eemalda kategooria</button>
+    <br><br>
+  </div>
+</div>

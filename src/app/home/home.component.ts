@@ -13,14 +13,14 @@ export class HomeComponent implements OnInit {
   itemsOriginal: Item[] = [];
   sortPriceNumber = 0;
   sortTitleNumber = 0;
-  date = new Date();
+  // date = new Date();
 
   constructor(
     private cartService: CartService,
     private itemService: ItemService) { }
 
   ngOnInit(): void {
-    this.date = new Date();
+    // this.date = new Date();
     // this.items = this.itemService.items;
     // this.itemService.saveItemsToDatabase();
     this.itemService.getItemsFromDatabase().subscribe(itemsFromDatabase => {

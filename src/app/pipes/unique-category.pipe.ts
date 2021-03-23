@@ -21,7 +21,9 @@ export class UniqueCategoryPipe implements PipeTransform {
     array.indexOf(cat) == index);
   }
 
-  // cat ---> "tools" <---,"veinid","tools", "veinid"
+  // .map() --- muudab esialgset massiivi uueks massiiviks
+
+  // cat ---> "tools" <---,"veinid","tools", "veinid", "car"
   // index ---> 0 <---,1,2,3,4,5,6
   // array ["tools","veinid","tools", "veinid"] 
 
