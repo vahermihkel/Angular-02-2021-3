@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoryService {
-  categories:string[] = [];
+  categories:{categoryName: string}[] = [];
   // = ["tools", "hammers", "saws", "ceramic tiles", "drills", "electric", "ventilation", "cables", "accessories", "colors"]
 
   url = 'https://webshop-85706-default-rtdb.europe-west1.firebasedatabase.app/';
@@ -19,12 +19,16 @@ export class CategoryService {
   }
 
   // post lisab juurde
-  addCategoryToDatabase(category: string): Observable<Object> {
-    return this.http.post(this.url + "categories.json", category);
+  addCategoryToDatabase(categoryObject: {categoryName: string}): Observable<Object> {
+    return this.http.post(this.url + "categories.json", categoryObject);
   }
 
   // get saab kõik
-  getCategoriesFromDatabase():Observable<string[]> {
-    return this.http.get<string[]>(this.url + "categories.json");
+  getCategoriesFromDatabase():Observable<{categoryName: string}[]> {
+    return this.http.get<{categoryName: string}[]>(this.url + "categories.json");
+  }
+
+  deleteFromDatabase(categories: {id: string, categoryName: string}[]) {
+    return this.http.put(this.url + "categories.json", categories)
   }
 }

@@ -22,6 +22,8 @@ import { ViewComponent } from './item/view/view.component';
 import { UniqueCategoryPipe } from './pipes/unique-category.pipe';
 import { AddCategoryComponent } from './admin/category/add-category/add-category.component';
 import { ViewCategoriesComponent } from './admin/category/view-categories/view-categories.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,6 +46,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     UniqueCategoryPipe,
     AddCategoryComponent,
     ViewCategoriesComponent,
+    LoginComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,

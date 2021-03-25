@@ -1,5 +1,9 @@
 <button class="main-button back" routerLink="../category">{{'Tagasi' | translate}}</button>
 
+<div *ngIf="error">{{ error.statusText }}</div>
+
+<br>
+
 <form (ngSubmit)="onSubmit()" [formGroup]="formGroup">
   <label>Kategooria nimetus</label>
   <input type="text" formControlName="name" placeholder="Kategooria">

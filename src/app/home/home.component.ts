@@ -10,6 +10,7 @@ import { ItemService } from '../services/item.service';
 })
 export class HomeComponent implements OnInit {
   itemsShown: Item[] = [];
+  categoryShown = "";
   itemsOriginal: Item[] = [];
   sortPriceNumber = 0;
   sortTitleNumber = 0;
@@ -35,7 +36,8 @@ export class HomeComponent implements OnInit {
     })
   }
 
-  onCategorySelect(category: String) {
+  onCategorySelect(category: string) {
+    this.categoryShown = category;
     this.itemsShown = this.itemsOriginal.filter((item)=>item.category==category)
   }
 

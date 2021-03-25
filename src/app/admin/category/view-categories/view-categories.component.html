@@ -5,7 +5,7 @@
 
 <div class="categories-list">
   <div *ngFor="let category of categories; let i = index">
-    <div>{{ category }}</div>
+    <div>{{ category.categoryName }}</div>
     <button (click)="onRemoveCategory(i)">Eemalda kategooria</button>
     <br><br>
   </div>

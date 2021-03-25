@@ -1,7 +1,7 @@
 <div class="sidebar">
-  <div (click)="onCategorySelect(category)" *ngFor="let category of itemsOriginal | uniqueCategory">
-    {{ category }}
-  </div>
+  <span [ngClass]="{'category-active': category == categoryShown}" (click)="onCategorySelect(category)" *ngFor="let category of itemsOriginal | uniqueCategory">
+    {{ category }} <br>
+  </span>
 </div>
 
 <div class="filter-bar">

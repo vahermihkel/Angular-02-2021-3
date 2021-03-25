@@ -9,6 +9,8 @@ import { HomeComponent } from './home/home.component';
 import { ViewComponent } from './item/view/view.component';
 import { ViewCategoriesComponent } from './admin/category/view-categories/view-categories.component';
 import { AddCategoryComponent } from './admin/category/add-category/add-category.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -20,6 +22,8 @@ const routes: Routes = [
   { path: "admin/edit-item/:itemId", component: EditItemComponent },
   { path: "admin/category", component: ViewCategoriesComponent },
   { path: "admin/add-category", component: AddCategoryComponent },
+  { path: "login", component: LoginComponent },
+  { path: "signup", component: SignupComponent }
   // { path: "**", redirectTo: "" },
 ];
 

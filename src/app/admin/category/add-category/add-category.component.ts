@@ -10,6 +10,7 @@ import { CategoryService } from '../category.service';
 })
 export class AddCategoryComponent implements OnInit {
   formGroup!: FormGroup;
+  error!: any;
 
   constructor(private categoryService: CategoryService,
     private router: Router) { }
@@ -21,8 +22,12 @@ export class AddCategoryComponent implements OnInit {
   }
 
   onSubmit() {
-    this.categoryService.categories.push(this.formGroup.value.name);
-    this.router.navigateByUrl("/admin/category")
+    this.categoryService.addCategoryToDatabase({categoryName: this.formGroup.value.name}).subscribe(
+      res => {
+        this.router.navigateByUrl("/admin/category")
+    }, error => {
+        this.error = error;
+    });
   }
 
 }

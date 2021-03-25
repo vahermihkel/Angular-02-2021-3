@@ -7,14 +7,18 @@ import { CategoryService } from '../category.service';
   styleUrls: ['./view-categories.component.css']
 })
 export class ViewCategoriesComponent implements OnInit {
-  categories!: string[];
+  categories: {id: string, categoryName: string}[] = [];
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit(): void {
     // this.categoryService.saveItemsToDatabase().subscribe();
-    this.categoryService.getCategoriesFromDatabase().subscribe(itemsFromFb => {
-      this.categories = itemsFromFb;
+    this.categoryService.getCategoriesFromDatabase().subscribe(categoriesFromFb => {
+      // this.categories = categoriesFromFb;
+      for (const key in categoriesFromFb) {
+          const element = categoriesFromFb[key];
+          this.categories.push({id: key, categoryName: element.categoryName});
+      }
       console.log("VÕTAN SERVICE_ST")
     });
   }
@@ -22,7 +26,9 @@ export class ViewCategoriesComponent implements OnInit {
   onRemoveCategory(i: number) {
     let isConfirm = confirm("Oled kindel, et soovid kategooria kustutada?")
     if (isConfirm) {
-      this.categoryService.categories.splice(i,1);
+      // this.categoryService.categories.splice(i,1);
+      this.categories.splice(i,1);
+      this.categoryService.deleteFromDatabase(this.categories).subscribe();
     }
   }
 

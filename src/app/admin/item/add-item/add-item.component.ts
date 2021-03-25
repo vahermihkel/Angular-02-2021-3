@@ -11,14 +11,17 @@ import { CategoryService } from '../../category/category.service';
   styleUrls: ['./add-item.component.css']
 })
 export class AddItemComponent implements OnInit {
-  categories!: string[];
+  categories!: {categoryName: string}[];
 
   constructor(private itemService: ItemService,
     private router: Router,
     private categoryService: CategoryService) { }
 
   ngOnInit(): void {
-    this.categories = this.categoryService.categories;
+   this.categoryService.getCategoriesFromDatabase().subscribe(categoriesFromFb => {
+      this.categories = categoriesFromFb;
+      console.log("VÕTAN SERVICE_ST")
+    });
   }
 
   onSubmit(form: NgForm) {
