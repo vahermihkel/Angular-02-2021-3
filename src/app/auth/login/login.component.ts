@@ -35,7 +35,10 @@ export class LoginComponent implements OnInit {
       resData => {
         this.error = "";
         this.isLoading = false;
-        this.router.navigate(["projects"], { relativeTo: this.route });
+        console.log("NEXTILE VAJUTATUD");
+        this.authService.loggedInChanged.next(true);
+        // this.router.navigate(["admin"], { relativeTo: this.route });
+        this.router.navigateByUrl("/admin");
       },
       errorMessage => {
         this.error = errorMessage;

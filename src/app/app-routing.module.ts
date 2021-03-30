@@ -11,17 +11,18 @@ import { ViewCategoriesComponent } from './admin/category/view-categories/view-c
 import { AddCategoryComponent } from './admin/category/add-category/add-category.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "view/:itemId", component: ViewComponent },
   { path: "cart", component: CartComponent },
-  { path: "admin", component: AdminHomeComponent },
-  { path: "admin/add-item", component: AddItemComponent },
-  { path: "admin/view-items", component: ViewItemsComponent },
-  { path: "admin/edit-item/:itemId", component: EditItemComponent },
-  { path: "admin/category", component: ViewCategoriesComponent },
-  { path: "admin/add-category", component: AddCategoryComponent },
+  { path: "admin", component: AdminHomeComponent, canActivate: [AuthGuard] },
+  { path: "admin/add-item", component: AddItemComponent, canActivate: [AuthGuard] },
+  { path: "admin/view-items", component: ViewItemsComponent, canActivate: [AuthGuard] },
+  { path: "admin/edit-item/:itemId", component: EditItemComponent, canActivate: [AuthGuard] },
+  { path: "admin/category", component: ViewCategoriesComponent, canActivate: [AuthGuard] },
+  { path: "admin/add-category", component: AddCategoryComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent }
   // { path: "**", redirectTo: "" },

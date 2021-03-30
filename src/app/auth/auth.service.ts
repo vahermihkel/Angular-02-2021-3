@@ -24,8 +24,9 @@ export class AuthService {
   emptyUser!: User;
   user = new BehaviorSubject<User>(this.emptyUser);
   private tokenExpirationTimer: any;
-  route = 'https://identitytoolkit.googleapis.com/v1/accounts:'
-  key = 'AIzaSyDsOOs7jaDWgZd3B06v0EM0I5o_HFuwhh0'
+  route = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+  key = 'AIzaSyDsOOs7jaDWgZd3B06v0EM0I5o_HFuwhh0';
+  loggedInChanged = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -72,7 +73,7 @@ export class AuthService {
   }
 
   autoLogin() {
-    let data = localStorage.getItem('userData')
+    let data = localStorage.getItem('userData');
     if (!data) {
       return;
     }

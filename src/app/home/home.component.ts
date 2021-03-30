@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 import { CartService } from '../cart/cart.service';
 import { Item } from '../models/item.model';
 import { ItemService } from '../services/item.service';
@@ -18,7 +19,8 @@ export class HomeComponent implements OnInit {
 
   constructor(
     private cartService: CartService,
-    private itemService: ItemService) { }
+    private itemService: ItemService,
+    private cookieService: CookieService) { }
 
   ngOnInit(): void {
     // this.date = new Date();
@@ -97,6 +99,7 @@ export class HomeComponent implements OnInit {
       this.cartService.itemsInCart[index].count += 1;
     }
     this.cartService.cartChanged.next(this.cartService.itemsInCart);
+    this.cookieService.set("Ostukorv", JSON.stringify(this.cartService.itemsInCart))
   }
 
 }
