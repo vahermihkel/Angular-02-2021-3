@@ -13,19 +13,11 @@ import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './global/navbar/navbar.component';
 import { FooterComponent } from './global/footer/footer.component';
-import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
-import { AddItemComponent } from './admin/item/add-item/add-item.component';
-import { EditItemComponent } from './admin/item/edit-item/edit-item.component';
-import { ViewItemsComponent } from './admin/item/view-items/view-items.component';
-import { ThousandSeparatorPipe } from './pipes/thousand-separator.pipe';
-import { ShortenTitlePipe } from './pipes/shorten-title.pipe';
-import { ViewComponent } from './item/view/view.component';
 import { UniqueCategoryPipe } from './pipes/unique-category.pipe';
-import { AddCategoryComponent } from './admin/category/add-category/add-category.component';
-import { ViewCategoriesComponent } from './admin/category/view-categories/view-categories.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { ItemCardComponent } from './item/item-card/item-card.component';
+import { AdminModule } from './admin/admin.module';
+import { ItemModule } from './item/item.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -38,19 +30,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     HomeComponent,
     NavbarComponent,
     FooterComponent,
-    AdminHomeComponent,
-    AddItemComponent,
-    EditItemComponent,
-    ViewItemsComponent,
-    ThousandSeparatorPipe,
-    ShortenTitlePipe,
-    ViewComponent,
     UniqueCategoryPipe,
-    AddCategoryComponent,
-    ViewCategoriesComponent,
     LoginComponent,
     SignupComponent,
-    ItemCardComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +46,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    AdminModule,
+    ItemModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
