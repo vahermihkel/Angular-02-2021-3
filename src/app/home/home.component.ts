@@ -18,9 +18,7 @@ export class HomeComponent implements OnInit {
   // date = new Date();
 
   constructor(
-    private cartService: CartService,
-    private itemService: ItemService,
-    private cookieService: CookieService) { }
+    private itemService: ItemService) { }
 
   ngOnInit(): void {
     // this.date = new Date();
@@ -73,33 +71,6 @@ export class HomeComponent implements OnInit {
       this.itemsShown = this.itemsOriginal.slice();
       this.sortPriceNumber = 0;
     }
-  }
-
-  onRemoveFromCart(item: Item) {
-    let index = this.cartService.itemsInCart.findIndex(itemInCart => 
-      item.title == itemInCart.item.title
-    )
-    if (index != -1) {
-      if (this.cartService.itemsInCart[index].count == 1) {
-        this.cartService.itemsInCart.splice(index,1);
-      } else {
-        this.cartService.itemsInCart[index].count -= 1;
-      }
-      this.cartService.cartChanged.next(this.cartService.itemsInCart);
-    }
-  }
-
-  onAddToCart(item: Item) {
-    let index = this.cartService.itemsInCart.findIndex(itemInCart => 
-      item.title == itemInCart.item.title
-    )
-    if (index == -1) {
-      this.cartService.itemsInCart.push({item: item, count: 1});
-    } else {
-      this.cartService.itemsInCart[index].count += 1;
-    }
-    this.cartService.cartChanged.next(this.cartService.itemsInCart);
-    this.cookieService.set("Ostukorv", JSON.stringify(this.cartService.itemsInCart))
   }
 
 }

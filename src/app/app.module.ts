@@ -25,6 +25,7 @@ import { AddCategoryComponent } from './admin/category/add-category/add-category
 import { ViewCategoriesComponent } from './admin/category/view-categories/view-categories.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ItemCardComponent } from './item/item-card/item-card.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -49,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ViewCategoriesComponent,
     LoginComponent,
     SignupComponent,
+    ItemCardComponent
   ],
   imports: [
     BrowserModule,

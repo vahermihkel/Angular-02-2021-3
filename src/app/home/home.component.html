@@ -11,9 +11,9 @@
  </div>
 
 <div class="items-wrapper">
-  <div class="item" *ngFor="let item of itemsShown; let i = index">
+  <app-item-card class="item" *ngFor="let itemShown of itemsShown; let i = index" [item]="itemShown" [i]="i"></app-item-card>
+  <!-- <div class="item" *ngFor="let item of itemsShown; let i = index">
     <img routerLink="view/{{i}}" src="{{ item.imgSrc }}">
-<!-- <img [routerLink]="['view',i]" [src]="item.imgSrc"> -->
     <div class="add-to-cart-button-wrapper">
       <div class="add-to-cart-button">
         <span (click)="onRemoveFromCart(item)">-</span>
@@ -23,5 +23,5 @@
     </div>
     <div class="item-title">{{ item.title | translate | shortenTitle:2 }}</div>
     <div class="item-price">{{ item.price | thousandSeparator }} €</div>
-  </div>
+  </div> -->
 </div>
