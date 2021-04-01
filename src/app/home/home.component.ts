@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from '../auth/auth.service';
 import { CartService } from '../cart/cart.service';
 import { Item } from '../models/item.model';
 import { ItemService } from '../services/item.service';
@@ -16,11 +17,16 @@ export class HomeComponent implements OnInit {
   sortPriceNumber = 0;
   sortTitleNumber = 0;
   // date = new Date();
+  isLoggedIn = false;
 
-  constructor(
+  constructor(private authService: AuthService,
     private itemService: ItemService) { }
 
   ngOnInit(): void {
+    this.authService.loggedInChanged.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn; 
+    })
+    this.isLoggedIn = localStorage.getItem("userData") ? true : false;
     // this.date = new Date();
     // this.items = this.itemService.items;
     // this.itemService.saveItemsToDatabase();
@@ -71,6 +77,12 @@ export class HomeComponent implements OnInit {
       this.itemsShown = this.itemsOriginal.slice();
       this.sortPriceNumber = 0;
     }
+  }
+
+  itemActiveChanged(item: Item) {
+    let i = this.itemsOriginal.findIndex(itemOriginal => item.title == itemOriginal.title )
+    this.itemsOriginal[i] = item;
+    this.itemService.saveItemsToDatabase().subscribe();
   }
 
 }

@@ -1,0 +1,11 @@
+.item-active {
+  position: absolute;
+  font-size: small;
+  background-color: white;
+  cursor: pointer;
+  border: 2px solid green;
+}
+
+.item-unactive {
+  border: 2px solid red;
+}

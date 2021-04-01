@@ -32,7 +32,7 @@ export class ViewItemsComponent implements OnInit {
     if (isConfirm) {
       this.items.splice(i,1);
       this.itemService.items.splice(i,1);
-      this.itemService.saveItemsToDatabase();
+      this.itemService.saveItemsToDatabase().subscribe();
     }
   }
 

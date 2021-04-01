@@ -1,3 +1,8 @@
+<div [ngClass]="{'item-unactive': !item.isActive}" class="item-active" (click)="onItemActive()" *ngIf="isLoggedIn">
+  <span *ngIf="item.isActive; else inactive">Mitteaktiivseks</span>
+  <ng-template #inactive>Aktiivseks</ng-template>
+</div>
+
 <img routerLink="view/{{i}}" src="{{ item.imgSrc }}">
   <div class="add-to-cart-button-wrapper">
     <div class="add-to-cart-button">

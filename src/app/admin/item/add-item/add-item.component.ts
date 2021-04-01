@@ -20,7 +20,6 @@ export class AddItemComponent implements OnInit {
   ngOnInit(): void {
    this.categoryService.getCategoriesFromDatabase().subscribe(categoriesFromFb => {
       this.categories = categoriesFromFb;
-      console.log("VÕTAN SERVICE_ST")
     });
   }
 
@@ -31,9 +30,9 @@ export class AddItemComponent implements OnInit {
         formValue.title,
         formValue.price, 
         formValue.category, 
-        formValue.imgSrc);
-      this.itemService.addItemToDatabase(item);
-      this.router.navigateByUrl("/admin/view-items")
+        formValue.imgSrc,
+        true);
+      this.itemService.addItemToDatabase(item).subscribe(()=>{this.router.navigateByUrl("/admin/view-items")});
     }
   }
 

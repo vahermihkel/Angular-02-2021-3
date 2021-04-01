@@ -20,7 +20,11 @@ export class NavbarComponent implements OnInit {
     private cookieService: CookieService ) { }
 
   ngOnInit(): void {
-    this.cartService.itemsInCart = JSON.parse(this.cookieService.get("Ostukorv")) || [];
+    // console.log(typeof this.cookieService.get("Ostukorv"));
+    // console.log(typeof JSON.parse(this.cookieService.get("Ostukorv")));
+    this.cartService.itemsInCart = 
+      this.cookieService.get("Ostukorv") == "" ? 
+                      [] : JSON.parse(this.cookieService.get("Ostukorv"));
 
     this.authService.loggedInChanged.subscribe(loggedIn => {
       this.isLoggedIn = loggedIn;

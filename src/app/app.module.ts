@@ -18,6 +18,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AdminModule } from './admin/admin.module';
 import { ItemModule } from './item/item.module';
+import { ShowActiveItemsPipe } from './home/show-active-items.pipe';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -33,6 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     UniqueCategoryPipe,
     LoginComponent,
     SignupComponent,
+    ShowActiveItemsPipe,
   ],
   imports: [
     BrowserModule,

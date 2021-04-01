@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { CartService } from 'src/app/cart/cart.service';
 import { Item } from 'src/app/models/item.model';
 
@@ -9,13 +10,25 @@ import { Item } from 'src/app/models/item.model';
   styleUrls: ['./item-card.component.css']
 })
 export class ItemCardComponent implements OnInit {
-  @Input() item!: Item;
-  @Input() i!: number;
+  @Input() item!: Item; // võtab parent componendilt - parentis [item]="VÄÄRTUS"
+  @Input() i!: number;   // parentis:  [i]="VÄÄRTUS"
+  isLoggedIn = false;
+  @Output() itemActiveChange:EventEmitter<Item> = new EventEmitter();
 
   constructor(private cartService: CartService,
-    private cookieService: CookieService) { }
+    private cookieService: CookieService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.authService.loggedInChanged.subscribe(loggedIn => {
+      this.isLoggedIn = loggedIn; 
+    })
+    this.isLoggedIn = localStorage.getItem("userData") ? true : false;
+  }
+
+  onItemActive() {
+    this.item.isActive = !this.item.isActive;
+    this.itemActiveChange.emit(this.item);
   }
 
   onRemoveFromCart(item: Item) {
@@ -29,6 +42,7 @@ export class ItemCardComponent implements OnInit {
         this.cartService.itemsInCart[index].count -= 1;
       }
       this.cartService.cartChanged.next(this.cartService.itemsInCart);
+      this.cookieService.set("Ostukorv", JSON.stringify(this.cartService.itemsInCart));
     }
   }
 
@@ -42,7 +56,7 @@ export class ItemCardComponent implements OnInit {
       this.cartService.itemsInCart[index].count += 1;
     }
     this.cartService.cartChanged.next(this.cartService.itemsInCart);
-    this.cookieService.set("Ostukorv", JSON.stringify(this.cartService.itemsInCart))
+    this.cookieService.set("Ostukorv", JSON.stringify(this.cartService.itemsInCart));
   }
 
 }

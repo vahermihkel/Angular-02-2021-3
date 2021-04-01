@@ -23,11 +23,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   imports: [
     CommonModule,
-    ItemModule,
-    TranslateModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslateModule,
+    ItemModule,
   ]
 })
 export class AdminModule { }

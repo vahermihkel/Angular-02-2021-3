@@ -23,7 +23,6 @@ import { AppRoutingModule } from '../app-routing.module';
   ],
   exports: [
     ThousandSeparatorPipe,
-    ShortenTitlePipe,
     ItemCardComponent
   ]
 })

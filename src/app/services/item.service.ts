@@ -16,13 +16,13 @@ export class ItemService {
   constructor(private http: HttpClient) { }
 
   // put asendab ära
-  saveItemsToDatabase(): void {
-    this.http.put(this.url + "items.json", this.items).subscribe();
+  saveItemsToDatabase(): Observable<Object> {
+    return this.http.put(this.url + "items.json", this.items);
   }
 
   // post lisab juurde
-  addItemToDatabase(item: Item): void {
-    this.http.post(this.url + "items.json", item).subscribe();
+  addItemToDatabase(item: Item): Observable<Object> {
+    return this.http.post(this.url + "items.json", item);
   }
 
   // get saab kõik
