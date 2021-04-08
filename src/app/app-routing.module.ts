@@ -24,6 +24,7 @@ const routes: Routes = [
     { path: "edit-item/:itemId", component: EditItemComponent },
     { path: "category", component: ViewCategoriesComponent },
     { path: "add-category", component: AddCategoryComponent },
+    { path: "carousel-conflict", component: AddCategoryComponent },
   ] },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent }
