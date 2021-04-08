@@ -45,7 +45,7 @@
 
 .cart-button span {
   position: relative;
-  top: -30px;
+  top: 30px;
   height: 30px;
   color: white;
 }

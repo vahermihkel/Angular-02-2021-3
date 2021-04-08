@@ -1,0 +1,53 @@
+<button class="main-button back" routerLink="/admin">{{'Tagasi' | translate}}</button>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="carouselSettingsForm">
+  <label>Vahetuse kiirus</label><br>
+  <input type="number" placeholder="Sisesta siia piltide vahetuse kiirus" formControlName="interval"><br>
+  <label>Lõpust algusesse</label>
+  <input type="checkbox" formControlName="wrap"><br>
+  <label>Liigutada saab klaviatuuri nooltega</label>
+  <input type="checkbox" formControlName="keyboard"><br>
+  <label>Hiirega peale minnes peatub</label>
+  <input type="checkbox" formControlName="pauseOnHover"><br>
+  <label>Näita vasakul ja paremal noolt</label>
+  <input type="checkbox" formControlName="showNavigationArrows"><br>
+  <label>Näita alumisi kaste</label>
+  <input type="checkbox" formControlName="showNavigationIndicators"><br>
+  <button class="btn-primary" type="submit">Sisesta</button>
+</form>
+
+<br><br><br>
+
+<!-- two way binding -->
+<label>Pilt</label><br>
+<input type="text" [(ngModel)]="image.url"><br>
+<label>Pealkiri</label><br>
+<input type="text" [(ngModel)]="image.header"><br>
+<label>Kirjeldus</label><br>
+<input type="text" [(ngModel)]="image.text"><br>
+<label>Pilditekst</label><br>
+<input type="text" [(ngModel)]="image.alt"><br>
+<button (click)="onImageSubmit()">Sisesta</button>
+
+<!-- <form (ngSubmit)="onImageFormSubmit(addImageForm)" #addImageForm="ngForm">
+  <label>Pilt</label><br>
+  <input type="text" ngModel name="url"><br>
+  <label>Pealkiri</label><br>
+  <input type="text" ngModel name="header"><br>
+  <label>Kirjeldus</label><br>
+  <input type="text" ngModel name="text"><br>
+  <label>Pilditekst</label><br>
+  <input type="text" ngModel name="alt"><br>
+  <button (click)="onImageSubmit()">Sisesta</button>
+</form> -->
+
+
+<br><br>
+
+<div *ngFor="let image of carouselImages; let i = index">
+  <button (click)="onDeleteImage(i)">X</button><div>{{ image.header }}</div>
+  <img style="height: 100px; width: 200px;" src="{{ image.url }}">
+  <div>{{ image.text }}</div>
+  <div>{{ image.alt }}</div>
+  <br><br>
+</div>

@@ -34,3 +34,7 @@ body {
 input.ng-invalid.ng-touched {
   border: 1px solid red;
 }
+
+.item:hover .add-to-cart-button {
+  visibility: visible;   
+ }

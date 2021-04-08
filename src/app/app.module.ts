@@ -19,6 +19,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AdminModule } from './admin/admin.module';
 import { ItemModule } from './item/item.module';
 import { ShowActiveItemsPipe } from './home/show-active-items.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CarouselComponent } from './home/carousel/carousel.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -35,6 +37,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     SignupComponent,
     ShowActiveItemsPipe,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     AdminModule,
-    ItemModule
+    ItemModule,
+    NgbModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

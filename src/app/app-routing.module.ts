@@ -12,6 +12,7 @@ import { AddCategoryComponent } from './admin/category/add-category/add-category
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthGuard } from './auth/auth.guard';
+import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
 
 const routes: Routes = [
   { path: "", component: HomeComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
     { path: "edit-item/:itemId", component: EditItemComponent },
     { path: "category", component: ViewCategoriesComponent },
     { path: "add-category", component: AddCategoryComponent },
-    { path: "carousel-conflict", component: AddCategoryComponent },
+    { path: "carousel-settings", component: CarouselSettingsComponent },
   ] },
   { path: "login", component: LoginComponent },
   { path: "signup", component: SignupComponent }
