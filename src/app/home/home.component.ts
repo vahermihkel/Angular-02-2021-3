@@ -82,6 +82,7 @@ export class HomeComponent implements OnInit {
   itemActiveChanged(item: Item) {
     let i = this.itemsOriginal.findIndex(itemOriginal => item.title == itemOriginal.title )
     this.itemsOriginal[i] = item;
+    this.itemService.items[i] = item;
     this.itemService.saveItemsToDatabase().subscribe();
   }
 

@@ -32,9 +32,9 @@ export class EditItemComponent implements OnInit {
     // console.log(this.route.snapshot.paramMap);
     this.item = this.itemService.items[this.id];
     this.editItemForm = new FormGroup({
-      title: new FormControl(this.item.title),
-      price: new FormControl(this.item.price),
-      imgSrc: new FormControl(this.item.imgSrc),
+      title: new FormControl(this.item.title), // enne koolonit peab olema sama mis HTML-s
+      price: new FormControl(this.item.price), // formControlName=""
+      imgSrc: new FormControl(this.item.imgSrc), // this.item.->..<-  peab olema sama mis Modelis
       category: new FormControl(this.item.category),
       isActive: new FormControl(this.item.isActive),
     })
@@ -48,7 +48,7 @@ export class EditItemComponent implements OnInit {
         formValue.price, 
         formValue.category, 
         formValue.imgSrc,
-        formValue.isActive);
+        formValue.isActive); // peab olema sama mis HTML-s, formControlName=""
       this.itemService.items[this.id] = item;
       this.itemService.saveItemsToDatabase().subscribe(()=>{this.router.navigateByUrl("/admin/view-items")});
       // setTimeout(()=>{this.router.navigateByUrl("/admin/view-items")},200)

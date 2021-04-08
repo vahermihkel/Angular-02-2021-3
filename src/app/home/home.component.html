@@ -1,3 +1,5 @@
+<app-carousel></app-carousel>
+
 <div class="sidebar">
   <span [ngClass]="{'category-active': category == categoryShown}" (click)="onCategorySelect(category)" *ngFor="let category of itemsOriginal | uniqueCategory">
     {{ category }} <br>

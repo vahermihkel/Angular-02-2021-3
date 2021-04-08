@@ -13,7 +13,7 @@ export class ItemCardComponent implements OnInit {
   @Input() item!: Item; // võtab parent componendilt - parentis [item]="VÄÄRTUS"
   @Input() i!: number;   // parentis:  [i]="VÄÄRTUS"
   isLoggedIn = false;
-  @Output() itemActiveChange:EventEmitter<Item> = new EventEmitter();
+  @Output() itemActiveChange = new EventEmitter(); // annab välja parentile (itemActiveChange)="funktsioon()"
 
   constructor(private cartService: CartService,
     private cookieService: CookieService,

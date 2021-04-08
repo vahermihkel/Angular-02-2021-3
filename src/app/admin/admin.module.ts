@@ -11,6 +11,7 @@ import { ItemModule } from '../item/item.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CarouselSettingsComponent } from './carousel-settings/carousel-settings.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ViewItemsComponent,
     AddCategoryComponent,
     ViewCategoriesComponent,
+    CarouselSettingsComponent,
   ],
   imports: [
     CommonModule,
