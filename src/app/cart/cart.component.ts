@@ -10,7 +10,7 @@ import { CartService } from './cart.service';
 })
 export class CartComponent implements OnInit {
   itemsInCart: {item: Item, count: number}[] = []
-  sumOfCart: number = 0;
+  sumOfCart: number = 1000;
 
   // Dependency injection
   constructor(private cartService: CartService,
