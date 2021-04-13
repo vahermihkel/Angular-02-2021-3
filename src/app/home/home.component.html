@@ -1,6 +1,17 @@
 <app-carousel></app-carousel>
 
+<!-- <ng-adsense
+  [adClient]="'ca-pub-4611413650603919'"
+  [adSlot]="673944784986"
+  [display]="'inline-block'"
+  [width]="320"
+  [height]="108"
+></ng-adsense> -->
+
+
+
 <div class="sidebar">
+  <div [ngClass]="{'category-active': categoryShown=='all'}" (click)="onCategorySelect('all')">Kõik kategooriad</div>
   <span [ngClass]="{'category-active': category == categoryShown}" (click)="onCategorySelect(category)" *ngFor="let category of itemsOriginal | uniqueCategory">
     {{ category }} <br>
   </span>

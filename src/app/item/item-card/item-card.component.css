@@ -1,13 +1,28 @@
-.item-active {
-  position: absolute;
+.admin-buttons {
+  display: flex;
+  justify-content: space-between;
   font-size: small;
   background-color: white;
   cursor: pointer;
+}
+
+.item-active {
   border: 2px solid green;
+  border-radius: 5px;
 }
 
 .item-unactive {
   border: 2px solid red;
+  border-radius: 5px;
+  z-index: 1;
+}
+
+.item-change {
+}
+
+.grayed-item {
+  opacity: 0.3;
+  color: gray;
 }
 
 .item-img {
@@ -16,7 +31,7 @@
 }
 
 .item-title {
-  height: 100px;
+  height: 70px;
 }
 
 .item-price {

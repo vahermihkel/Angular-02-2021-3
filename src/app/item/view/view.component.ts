@@ -20,11 +20,16 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     let id = Number(this.route.snapshot.paramMap.get("itemId"));
-    console.log(this.route.snapshot.paramMap);
-    console.log(id);
-    this.item = this.itemService.items[id];
-    console.log(this.item); 
 
+    this.itemService.getItemsFromDatabase().subscribe(itemsFromDatabase => {
+      this.itemService.items = [];
+      for (const key in itemsFromDatabase) {
+          const element = itemsFromDatabase[key];
+          this.itemService.items.push(element);
+      }
+      this.item = this.itemService.items[id];
+
+    })
   }
 
   onRemoveFromCart() {

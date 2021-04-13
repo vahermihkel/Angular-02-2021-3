@@ -21,6 +21,7 @@ import { ItemModule } from './item/item.module';
 import { ShowActiveItemsPipe } from './home/show-active-items.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CarouselComponent } from './home/carousel/carousel.component';
+import { AdsenseModule } from 'ng2-adsense';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -54,7 +55,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     AdminModule,
     ItemModule,
-    NgbModule
+    NgbModule,
+    AdsenseModule.forRoot({
+      adClient: 'ca-pub-7640562161899788',
+      adSlot: 7259870550,
+    })
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]

@@ -1,6 +1,6 @@
-<button class="main-button back" routerLink="/admin/view-items">{{'Tagasi' | translate}}</button>
+<button class="main-button back" (click)="onBack()">{{'Tagasi' | translate}}</button>
 
-<form (ngSubmit)="onSubmit(editItemForm)" [formGroup]="editItemForm">
+<form *ngIf="editItemForm" (ngSubmit)="onSubmit(editItemForm)" [formGroup]="editItemForm">
   <label>Nimetus</label><br>
   <input type="text" placeholder="Toote nimetus" formControlName="title" required><br>
   <label>Pilt</label><br>

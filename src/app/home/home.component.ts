@@ -43,8 +43,13 @@ export class HomeComponent implements OnInit {
   }
 
   onCategorySelect(category: string) {
-    this.categoryShown = category;
-    this.itemsShown = this.itemsOriginal.filter((item)=>item.category==category)
+    if (category == 'all') {
+      this.itemsShown = this.itemsOriginal;
+      this.categoryShown = 'all';
+    } else {
+      this.categoryShown = category;
+      this.itemsShown = this.itemsOriginal.filter((item)=>item.category==category)
+    }
   }
 
   // splice() - kustutab massiivist

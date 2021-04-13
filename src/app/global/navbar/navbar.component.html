@@ -3,7 +3,6 @@
   <div routerLink="admin" *ngIf="isLoggedIn">Admini vaade</div>
   <div (click)="onLogout()" *ngIf="isLoggedIn">Logi välja</div>
   <div routerLink="login" *ngIf="!isLoggedIn">Logi sisse</div>
-  <div routerLink="signup" *ngIf="!isLoggedIn">Registreeru</div>
   <div>
     <img class="lang-1" (click)="useLanguage('ee')" src="assets/i18n/ee.png">
     <img class="lang-2" (click)="useLanguage('en')" src="assets/i18n/en.png">

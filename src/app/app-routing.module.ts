@@ -26,9 +26,9 @@ const routes: Routes = [
     { path: "category", component: ViewCategoriesComponent },
     { path: "add-category", component: AddCategoryComponent },
     { path: "carousel-settings", component: CarouselSettingsComponent },
+    { path: "signup", component: SignupComponent }
   ] },
   { path: "login", component: LoginComponent },
-  { path: "signup", component: SignupComponent }
   // { path: "**", redirectTo: "" },
 ];
 

@@ -1,15 +1,23 @@
-<div [ngClass]="{'item-unactive': !item.isActive}" class="item-active" (click)="onItemActive()" *ngIf="isLoggedIn">
-  <span *ngIf="item.isActive; else inactive">Mitteaktiivseks</span>
-  <ng-template #inactive>Aktiivseks</ng-template>
-</div>
-
-<img class="item-img" routerLink="view/{{i}}" src="{{ item.imgSrc }}">
-  <div class="add-to-cart-button-wrapper">
-    <div class="add-to-cart-button">
-      <span (click)="onRemoveFromCart(item)">-</span>
-      <span>______</span>
-      <span (click)="onAddToCart(item)">+</span>
-    </div>
+<span class="admin-buttons">
+  <div [ngClass]="{'item-unactive': !item.isActive, 'item-active': item.isActive}" 
+    (click)="onItemActive()" 
+    *ngIf="isLoggedIn">
+    <span *ngIf="item.isActive; else inactive">Mitteaktiivseks</span>
+    <ng-template #inactive>Aktiivseks</ng-template>
   </div>
-<div class="item-title">{{ item.title | translate | shortenTitle:2 }}</div>
-<div class="item-price">{{ item.price | thousandSeparator }} €</div>
+  <span class="item-change" routerLink="admin/edit-item/{{i}}">Muuda</span>
+</span>
+<!-- [routerLink]="['admin/edit-item', i]" -->
+
+<span [ngClass]="{'grayed-item': !item.isActive}">
+  <img class="item-img" routerLink="view/{{i}}" src="{{ item.imgSrc }}">
+    <div class="add-to-cart-button-wrapper">
+      <div class="add-to-cart-button" *ngIf="item.isActive">
+        <span (click)="onRemoveFromCart(item)">-</span>
+        <span>______</span>
+        <span (click)="onAddToCart(item)">+</span>
+      </div>
+    </div>
+  <div class="item-title">{{ item.title | translate | shortenTitle:2 }}</div>
+  <div class="item-price">{{ item.price | thousandSeparator }} €</div>
+</span>

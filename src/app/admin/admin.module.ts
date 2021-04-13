@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { ToastService, AngularToastifyModule } from 'angular-toastify'; 
+
 import { AddCategoryComponent } from './category/add-category/add-category.component';
 import { ViewCategoriesComponent } from './category/view-categories/view-categories.component';
 import { AdminHomeComponent } from './admin-home/admin-home.component';
@@ -30,6 +32,8 @@ import { CarouselSettingsComponent } from './carousel-settings/carousel-settings
     ReactiveFormsModule,
     TranslateModule,
     ItemModule,
-  ]
+    AngularToastifyModule    
+  ],
+  providers: [ToastService]
 })
 export class AdminModule { }

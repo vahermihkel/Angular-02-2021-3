@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm } from '@angular/forms';
+import { ToastService } from 'angular-toastify';
 import { CarouselService } from 'src/app/home/carousel/carousel.service';
 
 @Component({
@@ -12,7 +13,8 @@ export class CarouselSettingsComponent implements OnInit {
   carouselImages!: {url: string, header: string, text: string, alt: string}[]
   image: {url: string, header: string, text: string, alt: string} = {url: "", header: "", text: "", alt: ""}
 
-  constructor(private carouselService: CarouselService) { }
+  constructor(private carouselService: CarouselService,
+    private _toastService: ToastService) { }
 
   ngOnInit(): void {
     this.carouselSettingsForm = new FormGroup({
@@ -34,6 +36,7 @@ export class CarouselSettingsComponent implements OnInit {
     this.carouselService.pauseOnHover = values.pauseOnHover;
     this.carouselService.showNavigationArrows = values.showNavigationArrows;
     this.carouselService.showNavigationIndicators = values.showNavigationIndicators;
+    this._toastService.warn("Edukalt seaded muudetud");
   }
 
   onImageSubmit() {
