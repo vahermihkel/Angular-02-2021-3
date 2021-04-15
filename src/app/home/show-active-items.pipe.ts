@@ -10,6 +10,7 @@ export class ShowActiveItemsPipe implements PipeTransform {
     if (isLoggedIn) {
       return value;
     }
+    console.log("filtreerin");
     return value.filter(item => item.isActive == true)
   }
 

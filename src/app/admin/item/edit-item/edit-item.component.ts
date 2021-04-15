@@ -12,7 +12,7 @@ import { CategoryService } from '../../category/category.service';
   styleUrls: ['./edit-item.component.css']
 })
 export class EditItemComponent implements OnInit {
-  id!: number;
+  id!: string;
   item!: Item;
   editItemForm!: FormGroup;
   categories!: {categoryName: string}[];
@@ -28,23 +28,33 @@ export class EditItemComponent implements OnInit {
       this.categories = categoriesFromFb;
     });
 
+    let id = this.route.snapshot.paramMap.get('itemId');
+    if (id) {
+      this.id = id;
+    }
+
     this.itemService.getItemsFromDatabase().subscribe(itemsFromDatabase => {
       this.itemService.items = [];
       for (const key in itemsFromDatabase) {
           const element = itemsFromDatabase[key];
           this.itemService.items.push(element);
       }
-      this.item = this.itemService.items[this.id];
+      let firebaseItem = this.itemService.items.find(item=>item.barcode==id);
+      if (firebaseItem) {
+        this.item = firebaseItem;
+      }
       this.editItemForm = new FormGroup({
       title: new FormControl(this.item.title), // enne koolonit peab olema sama mis HTML-s
       price: new FormControl(this.item.price), // formControlName=""
       imgSrc: new FormControl(this.item.imgSrc), // this.item.->..<-  peab olema sama mis Modelis
       category: new FormControl(this.item.category),
       isActive: new FormControl(this.item.isActive),
+      description: new FormControl(this.item.description),
+      barcode: new FormControl(this.item.barcode),
+      producer: new FormControl(this.item.producer),
     })
     })
 
-    this.id = (Number)(this.route.snapshot.paramMap.get('itemId'));
     // console.log(this.route);
     // console.log(this.route.snapshot);
     // console.log(this.route.snapshot.paramMap);
@@ -62,8 +72,12 @@ export class EditItemComponent implements OnInit {
         formValue.price, 
         formValue.category, 
         formValue.imgSrc,
-        formValue.isActive); // peab olema sama mis HTML-s, formControlName=""
-      this.itemService.items[this.id] = item;
+        formValue.isActive,
+        formValue.description,
+        formValue.barcode,
+        formValue.producer); // peab olema sama mis HTML-s, formControlName=""
+      let id = this.itemService.items.findIndex(item=>item.barcode == this.id)
+      this.itemService.items[id] = item;
       this.itemService.saveItemsToDatabase().subscribe(()=>{this.router.navigateByUrl("/admin/view-items")});
       // setTimeout(()=>{this.router.navigateByUrl("/admin/view-items")},200)
     } 

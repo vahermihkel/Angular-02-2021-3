@@ -1,16 +1,15 @@
-<span class="admin-buttons">
+<span class="admin-buttons" *ngIf="isLoggedIn">
   <div [ngClass]="{'item-unactive': !item.isActive, 'item-active': item.isActive}" 
-    (click)="onItemActive()" 
-    *ngIf="isLoggedIn">
+    (click)="onItemActive()">
     <span *ngIf="item.isActive; else inactive">Mitteaktiivseks</span>
     <ng-template #inactive>Aktiivseks</ng-template>
   </div>
-  <span class="item-change" routerLink="admin/edit-item/{{i}}">Muuda</span>
+  <span class="item-change" routerLink="admin/edit-item/{{item.barcode}}">Muuda</span>
 </span>
 <!-- [routerLink]="['admin/edit-item', i]" -->
 
 <span [ngClass]="{'grayed-item': !item.isActive}">
-  <img class="item-img" routerLink="view/{{i}}" src="{{ item.imgSrc }}">
+  <img class="item-img" routerLink="view/{{item.barcode}}" src="{{ item.imgSrc }}">
     <div class="add-to-cart-button-wrapper">
       <div class="add-to-cart-button" *ngIf="item.isActive">
         <span (click)="onRemoveFromCart(item)">-</span>

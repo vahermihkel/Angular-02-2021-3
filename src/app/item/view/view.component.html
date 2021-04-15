@@ -1,7 +1,13 @@
-{{ item | json }}
-
-<div class="add-to-cart-button">
-  <span (click)="onRemoveFromCart()">-</span>
-  <span>______</span>
-  <span (click)="onAddToCart()">+</span>
+<div *ngIf="item">
+  <img class="item-img" src="{{ item.imgSrc }}">
+    <div class="add-to-cart-button-wrapper">
+      <div class="add-to-cart-button" *ngIf="item.isActive">
+        <span (click)="onRemoveFromCart()">-</span>
+        <span>______</span>
+        <span (click)="onAddToCart()">+</span>
+      </div>
+    </div>
+  <div class="item-title">{{ item.title | translate | shortenTitle:2 }}</div>
+  <div class="item-price">{{ item.price | thousandSeparator }} €</div>
 </div>
+<img *ngIf="!item && !isLoading" src="assets/empty-cart.svg">

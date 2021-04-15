@@ -17,8 +17,15 @@ export class ItemService {
 
   // put asendab ära
   saveItemsToDatabase(): Observable<Object> {
+    // this.items = this.items.map(item => ({...item, barcode: this.getRandomNumber().toString()}) )
+    // this.items = this.items.map(item => ({...item, barcode: 'EU' + item.barcode}) )
+    // console.log(this.items);
     return this.http.put(this.url + "items.json", this.items);
   }
+
+  // getRandomNumber() {
+  //   return Math.ceil(Math.random() * (99999999 - 10000000) + 10000000);
+  // }
 
   // post lisab juurde
   addItemToDatabase(item: Item): Observable<Object> {

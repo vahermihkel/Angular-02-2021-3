@@ -31,7 +31,10 @@ export class AddItemComponent implements OnInit {
         formValue.price, 
         formValue.category, 
         formValue.imgSrc,
-        true);
+        true,
+        formValue.description,
+        formValue.barcode,
+        formValue.producer);
       this.itemService.addItemToDatabase(item).subscribe(()=>{this.router.navigateByUrl("/admin/view-items")});
     }
   }

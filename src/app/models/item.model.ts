@@ -5,7 +5,10 @@ export class Item {
     public price: number, 
     public category: string, 
     public imgSrc: string,
-    public isActive: boolean
+    public isActive: boolean,
+    public description: string,
+    public barcode: string,
+    public producer: string
   ) {}
 }
 

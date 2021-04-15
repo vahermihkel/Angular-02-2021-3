@@ -17,13 +17,18 @@ export class CarouselComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.images = this.carouselService.images;
     this.config.interval = this.carouselService.interval;
     this.config.wrap = this.carouselService.wrap;
     this.config.keyboard = this.carouselService.keyboard;
     this.config.pauseOnHover = this.carouselService.pauseOnHover;
-    this.config.showNavigationArrows = this.carouselService.showNavigationArrows;
-    this.config.showNavigationIndicators = this.carouselService.showNavigationIndicators;
-    this.images = this.carouselService.images;
+    if (this.images.length > 1) {
+      this.config.showNavigationArrows = this.carouselService.showNavigationArrows;
+      this.config.showNavigationIndicators = this.carouselService.showNavigationIndicators;
+    } else {
+      this.config.showNavigationArrows = false;
+      this.config.showNavigationIndicators = false;
+    }
   }
 
 }

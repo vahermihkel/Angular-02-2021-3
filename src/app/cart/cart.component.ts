@@ -33,7 +33,7 @@ export class CartComponent implements OnInit {
 
   onRemoveFromCart(item: Item) {
     let index = this.cartService.itemsInCart.findIndex(itemInCart => 
-      item.title == itemInCart.item.title
+      item.barcode == itemInCart.item.barcode
     )
     if (index != -1) {
       if (this.cartService.itemsInCart[index].count == 1) {
@@ -47,7 +47,7 @@ export class CartComponent implements OnInit {
 
   onAddToCart(item: Item) {
     let index = this.cartService.itemsInCart.findIndex(itemInCart => 
-      item.title == itemInCart.item.title
+      item.barcode == itemInCart.item.barcode
     )
     if (index == -1) {
       this.cartService.itemsInCart.push({item: item, count: 1});

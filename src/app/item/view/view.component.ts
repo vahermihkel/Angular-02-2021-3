@@ -12,6 +12,7 @@ import { ItemService } from 'src/app/services/item.service';
 })
 export class ViewComponent implements OnInit {
   item!: Item;
+  isLoading = false;
 
   constructor(private route: ActivatedRoute,
     private itemService: ItemService,
@@ -19,22 +20,26 @@ export class ViewComponent implements OnInit {
     private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    let id = Number(this.route.snapshot.paramMap.get("itemId"));
+    let id = this.route.snapshot.paramMap.get("itemId");
 
+    this.isLoading = true;
     this.itemService.getItemsFromDatabase().subscribe(itemsFromDatabase => {
       this.itemService.items = [];
       for (const key in itemsFromDatabase) {
           const element = itemsFromDatabase[key];
           this.itemService.items.push(element);
       }
-      this.item = this.itemService.items[id];
-
+      let firebaseItem = this.itemService.items.find(item=>item.barcode==id);
+      if (firebaseItem) {
+        this.item = firebaseItem;
+      }
+      this.isLoading = false;
     })
   }
 
   onRemoveFromCart() {
     let index = this.cartService.itemsInCart.findIndex(itemInCart => 
-      this.item.title == itemInCart.item.title
+      this.item.barcode == itemInCart.item.barcode
     )
     if (index != -1) {
       if (this.cartService.itemsInCart[index].count == 1) {
@@ -51,7 +56,7 @@ export class ViewComponent implements OnInit {
 
   onAddToCart() {
     let index = this.cartService.itemsInCart.findIndex(itemInCart => 
-      this.item.title == itemInCart.item.title
+      this.item.barcode == itemInCart.item.barcode
     )
     if (index == -1) {
       this.cartService.itemsInCart.push({item: this.item, count: 1});

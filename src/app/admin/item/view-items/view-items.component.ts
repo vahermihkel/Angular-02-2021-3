@@ -27,9 +27,10 @@ export class ViewItemsComponent implements OnInit {
     })
   }
 
-  onDeleteItem(i: number) {
+  onDeleteItem(item: Item) {
     let isConfirm = confirm(this.translate.instant("Kas kustutad?"));
     if (isConfirm) {
+      let i = this.itemService.items.findIndex(serviceItem=> item.barcode == serviceItem.barcode);
       this.items.splice(i,1);
       this.itemService.items.splice(i,1);
       this.itemService.saveItemsToDatabase().subscribe();

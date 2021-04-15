@@ -14,6 +14,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { AppRoutingModule } from '../app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselSettingsComponent } from './carousel-settings/carousel-settings.component';
+import { AutosizeDirective } from './item/autosize.directive';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CarouselSettingsComponent } from './carousel-settings/carousel-settings
     AddCategoryComponent,
     ViewCategoriesComponent,
     CarouselSettingsComponent,
+    AutosizeDirective,
   ],
   imports: [
     CommonModule,

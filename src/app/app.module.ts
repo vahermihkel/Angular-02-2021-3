@@ -61,7 +61,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       adSlot: 7259870550,
     })
   ],
-  providers: [CookieService],
+  providers: [CookieService, ShowActiveItemsPipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import { AuthService } from '../auth/auth.service';
 import { CartService } from '../cart/cart.service';
 import { Item } from '../models/item.model';
 import { ItemService } from '../services/item.service';
+import { ShowActiveItemsPipe } from './show-active-items.pipe';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
   isLoggedIn = false;
 
   constructor(private authService: AuthService,
-    private itemService: ItemService) { }
+    private itemService: ItemService,
+    private showActiveItems: ShowActiveItemsPipe) { }
 
   ngOnInit(): void {
     this.authService.loggedInChanged.subscribe(loggedIn => {
@@ -57,6 +59,7 @@ export class HomeComponent implements OnInit {
   // split() - teeb stringist massiivi "tere".split() -- ["t","e","r","e"]
 
   onSortTitle() {
+    this.itemsShown = this.itemsOriginal.slice();
       if (this.sortTitleNumber == 0) {
         this.itemsShown.sort((a, b) => a.title.localeCompare(b.title));
         this.sortTitleNumber = 1;
@@ -64,12 +67,16 @@ export class HomeComponent implements OnInit {
         this.itemsShown.sort((a, b) => b.title.localeCompare(a.title));
         this.sortTitleNumber = 2;
       } else {
-        this.itemsShown = this.itemsOriginal.slice();
+        this.categoryShown = this.categoryShown == "" ? 'all' : this.categoryShown;
+        this.onCategorySelect(this.categoryShown);
         this.sortTitleNumber = 0;
       }
+      this.itemsShown = this.showActiveItems.transform(this.itemsShown, this.isLoggedIn);
   }
 
   onSortPrice() {
+    // muteerumise vältimiseks, teeme koopia
+    this.itemsShown = this.itemsOriginal.slice();
     if (this.sortPriceNumber == 0) {
       // 12,13,414,1231,12312,1,213,1
       this.itemsShown.sort((a, b) => a.price - b.price);
@@ -78,14 +85,15 @@ export class HomeComponent implements OnInit {
       this.itemsShown.sort((a, b) => b.price - a.price);
       this.sortPriceNumber = 2;
     } else {
-      // muteerumise vältimiseks, teeme koopia
-      this.itemsShown = this.itemsOriginal.slice();
+      this.categoryShown = this.categoryShown == "" ? 'all' : this.categoryShown;
+      this.onCategorySelect(this.categoryShown);
       this.sortPriceNumber = 0;
     }
+    this.itemsShown = this.showActiveItems.transform(this.itemsShown, this.isLoggedIn);
   }
 
   itemActiveChanged(item: Item) {
-    let i = this.itemsOriginal.findIndex(itemOriginal => item.title == itemOriginal.title )
+    let i = this.itemsOriginal.findIndex(itemOriginal => item.barcode == itemOriginal.barcode )
     this.itemsOriginal[i] = item;
     this.itemService.items[i] = item;
     this.itemService.saveItemsToDatabase().subscribe();

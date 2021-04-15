@@ -8,14 +8,21 @@
   <label>Hind</label><br>
   <input type="number" placeholder="Toote hind" formControlName="price" required><br>
   
+  <label>Kategooria</label><br>
   <select formControlName="category">
     <option disabled value="">Vali kategooria</option>
     <option *ngFor="let category of categories" [value]="category.categoryName">  
         {{category.categoryName}}
     </option> 
   </select>
+  <br><br> 
 
-
+  <label>Kirjeldus</label><br>
+  <textarea autosize type="text" placeholder="Toote kirjeldus" formControlName="description"></textarea><br>
+  <label>Ribakood</label><br>
+  <input minlength="8" maxlength="8" type="text" placeholder="Toote ribakood" formControlName="barcode" required><br>
+  <label>Tootja</label><br>
+  <input type="text" placeholder="Toote tootja" formControlName="producer"><br>
 
   <label>Aktiivne</label>
   <input type="checkbox" formControlName="isActive"><br>

@@ -15,6 +15,15 @@
         {{category.categoryName}}
     </option> 
   </select>
+  <br><br>
+
+  <label>Kirjeldus</label><br>
+  <textarea autosize type="text" placeholder="Toote kirjeldus" ngModel name="description"></textarea><br>
+  <label>Ribakood</label><br>
+  <input type="text" placeholder="Toote ribakood" ngModel name="barcode" required minlength="8" maxlength="8"><br>
+  <label>Tootja</label><br>
+  <input type="text" placeholder="Toote tootja" ngModel name="producer"><br>
+
   <button class="main-button add" [disabled]="addItemForm.invalid" type="submit">SISESTA</button>
 </form>
 
